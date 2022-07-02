@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import {
+  Stack,
+  Center,
+  Heading,
+  ScrollView,
+  VStack,
+  Divider,
+  NativeBaseProvider,
+  Button,
+  HStack,
+} from "native-base";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider>
+      <View style={styles.center}>
+        <HStack space={10}>
+          <Button onPress={() => alert("This is a test alert!")}>Hello 1</Button>
+
+          <Button>Hello 2</Button>
+
+          <Button>Hello 3</Button>
+        </HStack>
+      </View>
+    </NativeBaseProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  center: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "space-around",
+    margin: 40,
   },
 });
