@@ -4,10 +4,10 @@
     "slug": "myapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./app/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +22,23 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./app/assets/favicon.png",
+      "config" : {
+        "firebase" : {
+          "apiKey": "AIzaSyALXnJ9cHgqO8qIfVjVdEqBGSXax1s6CQw",
+          "authDomain": "myapp-22ca8.firebaseapp.com",
+          "databaseURL": "https://myapp-22ca8-default-rtdb.asia-southeast1.firebasedatabase.app",
+          "projectId": "myapp-22ca8",
+          "storageBucket": "myapp-22ca8.appspot.com",
+          "messagingSenderId": "173569216178",
+          "appId": "1:173569216178:web:a88ae83b60d72ab20b03ab"
+        }
+      }
     }
   }
 }

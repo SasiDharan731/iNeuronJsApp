@@ -1,39 +1,34 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import {
-  Stack,
-  Center,
-  Heading,
-  ScrollView,
-  VStack,
-  Divider,
-  NativeBaseProvider,
-  Button,
-  HStack,
-} from "native-base";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Constants from 'expo-constants';
+import * as firebase from 'firebase';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import Route from './src/navigation/main';
+import rootReducer from './src/redux/reducers';
+
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
+
+
+
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(Constants.manifest.web.config.firebase)
+} else {
+  firebase.app()
+}
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchInterval: false, staleTime: Infinity } }
+})
 
 export default function App() {
   return (
-    <NativeBaseProvider>
-      <View style={styles.center}>
-        <HStack space={10}>
-          <Button onPress={() => alert("This is a test alert!")}>Hello 1</Button>
-
-          <Button>Hello 2</Button>
-
-          <Button>Hello 3</Button>
-        </HStack>
-      </View>
-    </NativeBaseProvider>
+    <Provider store={store} >
+      <QueryClientProvider client={queryClient}>
+        <Route />
+      </QueryClientProvider>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "space-around",
-    margin: 40,
-  },
-});
